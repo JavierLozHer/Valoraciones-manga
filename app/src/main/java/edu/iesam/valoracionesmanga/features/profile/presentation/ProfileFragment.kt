@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.databinding.FragmentProfileBinding
 
@@ -22,6 +23,14 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.profileToolbar.toolbar.title = getString(R.string.profile)
+        binding.apply {
+            profileToolbar.toolbar.title = getString(R.string.profile)
+            buttonLogin.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileToUserForm(true))
+            }
+            buttonCreateUser.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileToUserForm(false))
+            }
+        }
     }
 }

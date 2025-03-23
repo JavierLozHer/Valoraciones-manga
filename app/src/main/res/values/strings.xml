@@ -3,4 +3,8 @@
     <string name="assessment">Valoraciones</string>
     <string name="manga">Manga</string>
     <string name="profile">Perfil</string>
+    <string name="user_name">Nombre de usuraio</string>
+    <string name="password">Contraseña</string>
+    <string name="create_user">Registrarse</string>
+    <string name="login">Iniciar sesion</string>
 </resources>
