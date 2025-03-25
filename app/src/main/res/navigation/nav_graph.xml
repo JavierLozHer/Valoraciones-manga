@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_manga" />
 
     <fragment
+        android:id="@+id/fragment_search"
+        android:name="edu.iesam.valoracionesmanga.features.search.presentation.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
         android:id="@+id/fragment_profile"
         android:name="edu.iesam.valoracionesmanga.features.profile.presentation.ProfileFragment"
         android:label="@string/profile"
