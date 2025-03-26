@@ -41,6 +41,10 @@
         android:label="User form"
         tools:layout="@layout/fragment_user_form">
 
+        <action
+            android:id="@+id/action_user_form_to_profile"
+            app:destination="@id/fragment_profile"/>
+
         <argument
             android:name="isLogin"
             app:argType="boolean"

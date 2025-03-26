@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.databinding.FragmentSearchBinding
 
@@ -24,5 +25,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.searchToolbar.toolbar.title = getString(R.string.search)
+        val firebaseAuth = FirebaseAuth.getInstance()
+        firebaseAuth.signOut()
     }
 }

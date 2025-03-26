@@ -1,5 +1,7 @@
 package edu.iesam.valoracionesmanga.features.user.presentation
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.iesam.valoracionesmanga.core.domain.ErrorApp
@@ -15,20 +17,30 @@ class UserFormViewModel(
     private val loginUseCase: LoginUseCase
 ): ViewModel() {
 
+    private val _uiState = MutableLiveData(UiState())
+    val uiState: LiveData<UiState> = _uiState
+
     fun createUser(email: String, passwd: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            createUserUseCase.invoke(email, passwd)
+            val result = createUserUseCase.invoke(email, passwd)
+            _uiState.postValue(UiState(
+                isLogged = result.isSuccess,
+                error = result.exceptionOrNull() as? ErrorApp
+            ))
         }
     }
 
     fun login(email: String, passwd: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            loginUseCase.invoke(email, passwd)
+            val result = loginUseCase.invoke(email, passwd)
+            _uiState.postValue(UiState(
+                isLogged = result.isSuccess,
+                error = result.exceptionOrNull() as? ErrorApp
+            ))
         }
     }
 
     data class UiState(
-        val isLoading: Boolean = false,
         val isLogged: Boolean = false,
         val error: ErrorApp? = null
     )

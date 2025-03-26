@@ -4,8 +4,12 @@
     <string name="manga">Manga</string>
     <string name="profile">Perfil</string>
     <string name="search">Buscar</string>
-    <string name="user_name">Nombre de usuraio</string>
+    <string name="user_name">Email</string>
     <string name="password">Contraseña</string>
     <string name="create_user">Registrarse</string>
     <string name="login">Iniciar sesion</string>
+    <string name="type_email">El usuario debe ser un email</string>
+    <string name="password_length">La contraseña debe ser de 6 caracteres o mas</string>
+    <string name="user_exists">El usuario ya existe</string>
+    <string name="user_incorrect">El usuario o la contreseña son incorrectos</string>
 </resources>

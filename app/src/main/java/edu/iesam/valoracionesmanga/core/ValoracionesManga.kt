@@ -11,7 +11,9 @@ class ValoracionesManga : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@ValoracionesManga)
-            modules(AppModule().module)
+            modules(
+                AppModule().module
+            )
         }
     }
 }
