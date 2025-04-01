@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
-import edu.iesam.valoracionesmanga.core.presentation.mangaAdapter.MangaAdapter
 import edu.iesam.valoracionesmanga.core.presentation.showSnackbar
 import edu.iesam.valoracionesmanga.databinding.FragmentSearchBinding
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
+import edu.iesam.valoracionesmanga.features.manga.presentation.adapter.MangaAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

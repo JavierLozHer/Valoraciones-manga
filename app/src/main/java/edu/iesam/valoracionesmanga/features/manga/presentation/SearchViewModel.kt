@@ -1,4 +1,4 @@
-package edu.iesam.valoracionesmanga.features.search.presentation
+package edu.iesam.valoracionesmanga.features.manga.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -33,7 +33,6 @@ class SearchViewModel(
     }
 
     fun searchMangas(searchText: String) {
-        _uiState.postValue(UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             val result = searchMangasUseCase.invoke(searchText)
             _uiState.postValue(UiState(
