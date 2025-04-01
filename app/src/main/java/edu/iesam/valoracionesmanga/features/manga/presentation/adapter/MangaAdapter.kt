@@ -1,4 +1,4 @@
-package edu.iesam.valoracionesmanga.core.presentation.mangaAdapter
+package edu.iesam.valoracionesmanga.features.manga.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
