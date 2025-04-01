@@ -57,5 +57,4 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.nav.ui.ktx)
     implementation(libs.nav.fragment.ktx)
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
 }
