@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="edu.iesam.valoracionesmanga.features.search.presentation.SearchFragment"
+        android:name="edu.iesam.valoracionesmanga.features.manga.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_search" />
 
