@@ -18,4 +18,5 @@ class MangaAdapter: ListAdapter<Manga, MangaViewHolder>(MangaDiffUtil()) {
     override fun onBindViewHolder(holder: MangaViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
+
 }
