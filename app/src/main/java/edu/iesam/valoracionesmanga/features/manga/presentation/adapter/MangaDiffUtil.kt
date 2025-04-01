@@ -1,4 +1,4 @@
-package edu.iesam.valoracionesmanga.core.presentation.mangaAdapter
+package edu.iesam.valoracionesmanga.features.manga.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga

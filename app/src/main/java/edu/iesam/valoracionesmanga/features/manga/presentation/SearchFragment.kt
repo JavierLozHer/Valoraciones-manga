@@ -1,4 +1,4 @@
-package edu.iesam.valoracionesmanga.features.search.presentation
+package edu.iesam.valoracionesmanga.features.manga.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
