@@ -12,7 +12,7 @@ import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.databinding.FragmentMangaBinding
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
-import edu.iesam.valoracionesmanga.core.presentation.mangaAdapter.MangaAdapter
+import edu.iesam.valoracionesmanga.features.manga.presentation.adapter.MangaAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MangaFragment : Fragment() {
