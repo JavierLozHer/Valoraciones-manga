@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="width_edit_text">250dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="width_image_manga">150dp</dimen>
+    <dimen name="height_image_manga">175dp</dimen>
 </resources>

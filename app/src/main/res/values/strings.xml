@@ -12,4 +12,6 @@
     <string name="password_length">La contraseña debe ser de 6 caracteres o mas</string>
     <string name="user_exists">El usuario ya existe</string>
     <string name="user_incorrect">El usuario o la contreseña son incorrectos</string>
+    <string name="manga_title">Manga title</string>
+    <string name="manga_author">Manga author</string>
 </resources>
