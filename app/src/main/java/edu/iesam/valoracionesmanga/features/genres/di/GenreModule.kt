@@ -1,18 +1,17 @@
-package edu.iesam.valoracionesmanga.features.manga.di
+package edu.iesam.valoracionesmanga.features.genres.di
 
 import edu.iesam.valoracionesmanga.core.data.local.db.ValoracionesMangaDataBase
-import edu.iesam.valoracionesmanga.features.manga.data.local.MangaDao
+import edu.iesam.valoracionesmanga.features.genres.data.local.GenreDao
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 
 @Module
 @ComponentScan
-class MangaModule {
+class GenreModule {
 
     @Single
-    fun provideMangaDao(db: ValoracionesMangaDataBase): MangaDao {
-        return db.mangaDao()
+    fun provideGenreDao(db: ValoracionesMangaDataBase): GenreDao {
+        return db.genreDao()
     }
-
 }

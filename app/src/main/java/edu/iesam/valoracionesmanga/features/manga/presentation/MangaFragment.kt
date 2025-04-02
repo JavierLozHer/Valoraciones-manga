@@ -1,6 +1,7 @@
 package edu.iesam.valoracionesmanga.features.manga.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,12 @@ import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.databinding.FragmentMangaBinding
+import edu.iesam.valoracionesmanga.features.genres.presentation.GenreSelectionDialogFragment
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 import edu.iesam.valoracionesmanga.features.manga.presentation.adapter.MangaAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MangaFragment : Fragment() {
+class MangaFragment : Fragment(), GenreSelectionDialogFragment.GenreSelectionListener {
 
     private var _binding: FragmentMangaBinding? = null
     private val binding get() = _binding!!
@@ -32,6 +34,10 @@ class MangaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMangaBinding.inflate(inflater, container, false)
+
+        binding.genreButton.setOnClickListener {
+            GenreSelectionDialogFragment().show(childFragmentManager, "GenreSelectionDialog")
+        }
         return binding.root
     }
 
@@ -66,6 +72,7 @@ class MangaFragment : Fragment() {
 
     private fun bindData(mangas: List<Manga>?) {
         mangas?.let {
+            Log.d("@dev", "Mangas $it")
             mangaAdapter.submitList(mangas)
         }
     }
@@ -76,5 +83,10 @@ class MangaFragment : Fragment() {
         } else {
             skeleton.showOriginal()
         }
+    }
+
+    override fun onGenresSelected(selectedGenres: List<String>) {
+        Log.d("@dev", "Generos $selectedGenres")
+        viewModel.getMangasByGenres(selectedGenres)
     }
 }
