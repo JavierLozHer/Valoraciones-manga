@@ -10,6 +10,7 @@ import edu.iesam.valoracionesmanga.BuildConfig
 import edu.iesam.valoracionesmanga.core.di.AppModule
 import edu.iesam.valoracionesmanga.core.di.LocalModule
 import edu.iesam.valoracionesmanga.core.di.RemoteModule
+import edu.iesam.valoracionesmanga.features.assessment.di.AssessmentModule
 import edu.iesam.valoracionesmanga.features.genres.di.GenreModule
 import edu.iesam.valoracionesmanga.features.manga.di.MangaModule
 import org.koin.android.ext.koin.androidContext
@@ -28,7 +29,8 @@ class ValoracionesManga : Application() {
                 RemoteModule().module,
                 LocalModule().module,
                 MangaModule().module,
-                GenreModule().module
+                GenreModule().module,
+                AssessmentModule().module
             )
         }
     }
