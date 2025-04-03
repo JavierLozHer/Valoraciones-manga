@@ -52,4 +52,8 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/dialog_fragment_select_genre"
+        android:name="edu.iesam.valoracionesmanga.features.genres.presentation.GenreSelectionDialogFragment" />
+
 </navigation>
