@@ -14,4 +14,10 @@ interface MangaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAll(vararg mangaEntity: MangaEntity)
 
+    @Query("SELECT * FROM $MANGA_TABLE WHERE $MANGA_ID = :id")
+    suspend fun findById(id: String): MangaEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun save(manga: MangaEntity)
+
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
@@ -21,11 +22,15 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val mangaAdapter = MangaAdapter()
+    private val mangaAdapter = MangaAdapter(::onClick)
 
     private val viewModel: SearchViewModel by viewModel()
 
     private lateinit var skeleton : Skeleton
+
+    fun onClick(id: String) {
+        findNavController().navigate(SearchFragmentDirections.actionMangaSearchToMangaDetail(id))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

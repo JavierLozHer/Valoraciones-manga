@@ -28,4 +28,20 @@ class MangaDbLocalDataStore(private val mangaDao: MangaDao) {
         }
     }
 
+    suspend fun save(manga: Manga) {
+        val mangaEntity = manga.toEntity()
+
+        mangaDao.save(mangaEntity)
+    }
+
+    suspend fun getById(id: String): Result<Manga> {
+        val mangaEntity = mangaDao.findById(id) ?: return Result.failure(ErrorApp.DataErrorApp)
+
+        return if (System.currentTimeMillis() - mangaEntity.savedAt < expireTime) {
+            Result.success(mangaEntity.toModel() )
+        } else {
+            Result.failure(ErrorApp.DataErrorApp)
+        }
+    }
+
 }
