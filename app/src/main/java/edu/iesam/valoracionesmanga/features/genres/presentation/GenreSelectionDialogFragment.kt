@@ -1,10 +1,11 @@
 package edu.iesam.valoracionesmanga.features.genres.presentation
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.bundle.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
@@ -17,10 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreSelectionDialogFragment : DialogFragment() {
 
-    interface GenreSelectionListener {
-        fun onGenresSelected(selectedGenres: List<String>)
-    }
-
     private var _binding: DialogFragmentGenresSelectionBinding? = null
     private val binding get() = _binding!!
 
@@ -30,14 +27,6 @@ class GenreSelectionDialogFragment : DialogFragment() {
 
     private lateinit var skeleton : Skeleton
 
-    private var listener: GenreSelectionListener? = null
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        listener = requireParentFragment() as GenreSelectionListener
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -56,7 +45,10 @@ class GenreSelectionDialogFragment : DialogFragment() {
 
         binding.btnAccept.setOnClickListener {
             val list = genreAdapter.currentList.filter { it.isSelected }.map { it.name }
-            listener?.onGenresSelected(list)
+            requireActivity().supportFragmentManager.setFragmentResult(
+                "requestKey",
+                bundleOf("selectedGenres" to list.toTypedArray())
+            )
             dismiss()
         }
 
