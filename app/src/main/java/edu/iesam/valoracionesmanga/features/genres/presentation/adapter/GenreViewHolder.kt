@@ -17,11 +17,11 @@ class GenreViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         binding.root.setOnClickListener {
             val newSelectionState = !binding.genreCheckbox.isChecked
             binding.genreCheckbox.isChecked = newSelectionState
+            genre.isSelected = newSelectionState
         }
 
-        binding.root.setOnClickListener {
-            val newSelectionState = !binding.genreCheckbox.isChecked
-            binding.genreCheckbox.isChecked = newSelectionState
+        binding.genreCheckbox.setOnClickListener {
+            val newSelectionState = binding.genreCheckbox.isChecked
             genre.isSelected = newSelectionState
         }
     }
