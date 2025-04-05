@@ -1,7 +1,6 @@
 package edu.iesam.valoracionesmanga.features.assessment.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.core.presentation.assessmentAdapter.AssessmentAdapter
 import edu.iesam.valoracionesmanga.databinding.FragmentAssessmentBinding
-import edu.iesam.valoracionesmanga.features.assessment.domain.Assessment
+import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AssessmentFragment : Fragment() {
@@ -57,16 +56,13 @@ class AssessmentFragment : Fragment() {
 
     private fun setupObserver() {
         val observer = Observer<AssessmentViewModel.UiState> {uiState ->
-            Log.d("@dev", "Llega ${uiState.errorApp}")
             showLoading(uiState.isLoading)
             bindData(uiState.assessment)
-
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
     private fun showLoading(isLoading: Boolean) {
-        Log.d("@dev", "Llega $isLoading")
         if (isLoading) {
             skeleton.showSkeleton()
         } else {
@@ -74,8 +70,7 @@ class AssessmentFragment : Fragment() {
         }
     }
 
-    private fun bindData(assessment: List<Assessment>?) {
-        Log.d("@dev", "Llega $assessment")
+    private fun bindData(assessment: List<GetAssessmentMangaUseCase.AssessmentManga>?) {
         assessment?.let {
             assessmentAdapter.submitList(assessment)
         }
