@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/fragment_assessment"
+        android:icon="@drawable/baseline_comment_24"
+        android:title="@string/assessment"/>
+
+    <item android:id="@+id/fragment_manga"
+        android:icon="@drawable/baseline_menu_book_24"
+        android:title="@string/manga"/>
+
+    <item android:id="@+id/fragment_search"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/search"/>
+
+    <item android:id="@+id/fragment_profile"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="@string/profile"/>
+</menu>

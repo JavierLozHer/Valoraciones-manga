@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/fragment_assessment">
+
+    <fragment
+        android:id="@+id/fragment_assessment"
+        android:name="edu.iesam.valoracionesmanga.features.assessment.presentation.AssessmentFragment"
+        android:label="@string/assessment"
+        tools:layout="@layout/fragment_assessment" />
+
+    <fragment
+        android:id="@+id/fragment_manga"
+        android:name="edu.iesam.valoracionesmanga.features.manga.presentation.MangaFragment"
+        android:label="@string/manga"
+        tools:layout="@layout/fragment_manga" />
+
+    <fragment
+        android:id="@+id/fragment_search"
+        android:name="edu.iesam.valoracionesmanga.features.manga.presentation.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="edu.iesam.valoracionesmanga.features.profile.presentation.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>
