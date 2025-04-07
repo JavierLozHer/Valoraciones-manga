@@ -39,6 +39,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -60,6 +61,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.nav.ui.ktx)
     implementation(libs.nav.fragment.ktx)
+    implementation(libs.gson.serializer)
 
     // Koin
     ksp(libs.koin.ksp)
@@ -76,6 +78,18 @@ dependencies {
     implementation(libs.firebase.appcheck.playintegrity)
     implementation(libs.firebase.appcheck.debug)
     implementation(libs.firebase.auth)
+
+    //Room
+    implementation(libs.room.runtime)
+    ksp(libs.room.ksp)
+    implementation(libs.room.coroutines)
+
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+
+    //Skeleton
+    implementation (libs.skeletonlayout)
 }
 
 ksp {

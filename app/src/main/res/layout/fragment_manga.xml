@@ -9,4 +9,10 @@
         layout="@layout/view_main_toolbar"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/manga_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/profile_toolbar"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

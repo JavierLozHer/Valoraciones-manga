@@ -19,6 +19,10 @@ koinBom = "4.0.0"
 koinAnnotations = "1.4.0"
 firebase-bom = "33.11.0"
 google-services = "4.4.2"
+room-version = "2.6.1"
+gson = "2.11.0"
+coil = "3.0.0-rc02"
+skeletonlayout = "5.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +50,13 @@ firebase-storage = { group = "com.google.firebase", name = "firebase-storage"}
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-version" }
+room-ksp = { group = "androidx.room", name = "room-compiler", version.ref = "room-version" }
+room-coroutines = { group = "androidx.room", name = "room-ktx", version.ref = "room-version" }
+gson-serializer = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
+skeletonlayout = { module = "com.faltenreich:skeletonlayout", version.ref = "skeletonlayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
