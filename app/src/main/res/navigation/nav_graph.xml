@@ -27,6 +27,29 @@
         android:id="@+id/fragment_profile"
         android:name="edu.iesam.valoracionesmanga.features.profile.presentation.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+
+        <action
+            android:id="@+id/action_profile_to_user_form"
+            app:destination="@id/fragment_user_form"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_user_form"
+        android:name="edu.iesam.valoracionesmanga.features.user.presentation.UserFormFragment"
+        android:label="User form"
+        tools:layout="@layout/fragment_user_form">
+
+        <action
+            android:id="@+id/action_user_form_to_profile"
+            app:destination="@id/fragment_profile"/>
+
+        <argument
+            android:name="isLogin"
+            app:argType="boolean"
+            android:defaultValue="false"/>
+
+    </fragment>
 
 </navigation>

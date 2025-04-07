@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safeargs.kotlin)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -57,4 +60,24 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.nav.ui.ktx)
     implementation(libs.nav.fragment.ktx)
+
+    // Koin
+    ksp(libs.koin.ksp)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.annotations)
+    implementation(libs.koin.ksp)
+
+
+    //Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.appcheck.playintegrity)
+    implementation(libs.firebase.appcheck.debug)
+    implementation(libs.firebase.auth)
+}
+
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
 }
