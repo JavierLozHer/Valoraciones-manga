@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.features.assessment.domain.Assessment
+import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
+import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 
-class AssessmentAdapter: ListAdapter<Assessment, AssessmentViewHolder>(AssessmentDiffUtil()) {
+class AssessmentAdapter(): ListAdapter<GetAssessmentMangaUseCase.AssessmentManga, AssessmentViewHolder>(AssessmentDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssessmentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_assessment_item, parent, false)

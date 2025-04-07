@@ -10,12 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin">
+
+        <ImageView
+            android:id="@+id/manga_image"
+            android:layout_width="@dimen/width_image_manga_s"
+            android:layout_height="@dimen/height_image_manga_S"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
         <TextView
             android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/manga_image"
             android:text="@string/user_name"
             android:textStyle="bold"/>
 
@@ -24,14 +32,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/max_score"
             android:text="@string/score"/>
 
         <TextView
+            android:id="@+id/max_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/max_score"/>
+
+        <TextView
             android:id="@+id/comment"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/score"
+            app:layout_constraintLeft_toRightOf="@id/manga_image"
             android:layout_marginTop="@dimen/assessment_user_margin"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
