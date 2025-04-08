@@ -9,10 +9,18 @@
         layout="@layout/view_main_toolbar"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <Button
+        android:id="@+id/genre_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/profile_toolbar"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/genres" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/manga_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/profile_toolbar"/>
+        app:layout_constraintTop_toBottomOf="@id/genre_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

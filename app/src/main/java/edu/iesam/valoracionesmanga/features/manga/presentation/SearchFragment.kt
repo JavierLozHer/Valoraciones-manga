@@ -55,7 +55,6 @@ class SearchFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                view?.showSnackbar("Buscar: $query")
                 return false
             }
 
