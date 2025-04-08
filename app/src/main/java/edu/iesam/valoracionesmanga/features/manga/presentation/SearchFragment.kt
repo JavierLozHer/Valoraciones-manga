@@ -39,6 +39,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.searchToolbar.toolbar.title = getString(R.string.search)
+        
         setSearchMenu()
         setUpRecyclerView()
         setupObserver()
