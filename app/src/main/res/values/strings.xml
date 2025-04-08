@@ -20,4 +20,7 @@
     <string name="cancel">Cancelar</string>
     <string name="score">0</string>
     <string name="max_score">/10</string>
+    <string name="start_date">Fecha de inicio: </string>
+    <string name="finish_date">Fecha de finalización: </string>
+    <string name="function">Author function</string>
 </resources>

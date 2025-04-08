@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
+import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.core.presentation.visible
 import edu.iesam.valoracionesmanga.databinding.FragmentMangaDetailBinding
@@ -32,9 +35,19 @@ class MangaDetailFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val toolbar = binding.profileToolbar.toolbar
+
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+
+        toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
         setupObserver()
         setupTab()
         viewModel.getManga(mangaArgs.mangaId)
+
+
     }
 
     private fun setupObserver() {
