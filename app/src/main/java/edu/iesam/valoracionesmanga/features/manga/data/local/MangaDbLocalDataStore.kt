@@ -7,8 +7,7 @@ import org.koin.core.annotation.Single
 @Single
 class MangaDbLocalDataStore(private val mangaDao: MangaDao) {
 
-    private val expireTime : Long = 1
-        //14400000
+    private val expireTime : Long = 14400000
 
     suspend fun saveAll(mangas: List<Manga>) {
         val mangasEntity = mangas.map { it.toEntity() }
