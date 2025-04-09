@@ -15,13 +15,22 @@
         android:id="@+id/fragment_manga"
         android:name="edu.iesam.valoracionesmanga.features.manga.presentation.MangaFragment"
         android:label="@string/manga"
-        tools:layout="@layout/fragment_manga" />
+        tools:layout="@layout/fragment_manga" >
+
+        <action
+            android:id="@+id/action_manga_to_manga_detail"
+            app:destination="@+id/fragment_manga_detail"/>
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_search"
         android:name="edu.iesam.valoracionesmanga.features.manga.presentation.SearchFragment"
         android:label="@string/search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_manga_search_to_manga_detail"
+            app:destination="@+id/fragment_manga_detail"/>
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_profile"
@@ -49,6 +58,22 @@
             android:name="isLogin"
             app:argType="boolean"
             android:defaultValue="false"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_manga_detail"
+        android:name="edu.iesam.valoracionesmanga.features.manga.presentation.MangaDetailFragment">
+
+        <argument
+            android:name="mangaId"
+            app:argType="string"
+            app:nullable="false"/>
+
+        <argument
+            android:name="mangaTitle"
+            app:argType="string"
+            app:nullable="false"/>
 
     </fragment>
 

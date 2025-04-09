@@ -24,4 +24,16 @@ class MangaDataRepository(
         }
     }
 
+    override suspend fun getById(id: String): Result<Manga> {
+        val localData = localDataSource.getById(id)
+        return if (localData.isFailure) {
+            val remoteResource = remoteDataSource.fetchById(id)
+            remoteResource.onSuccess {
+                localDataSource.save(it)
+            }
+        } else {
+            localData
+        }
+    }
+
 }
