@@ -36,6 +36,7 @@ class MangaDetailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbar = binding.profileToolbar.toolbar
+        toolbar.title = mangaArgs.mangaTitle
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
 

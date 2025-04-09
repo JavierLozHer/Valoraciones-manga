@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import edu.iesam.valoracionesmanga.R
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 
-class MangaAdapter(private val onClick: (String) -> Unit): ListAdapter<Manga, MangaViewHolder>(MangaDiffUtil()) {
+class MangaAdapter(private val onClick: (String, String) -> Unit): ListAdapter<Manga, MangaViewHolder>(MangaDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_manga_item, parent, false)

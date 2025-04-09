@@ -69,6 +69,12 @@
             android:name="mangaId"
             app:argType="string"
             app:nullable="false"/>
+
+        <argument
+            android:name="mangaTitle"
+            app:argType="string"
+            app:nullable="false"/>
+
     </fragment>
 
     <fragment

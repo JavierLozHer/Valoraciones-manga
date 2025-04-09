@@ -11,7 +11,7 @@ class MangaViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
 
     private lateinit var binding: ViewMangaItemBinding
 
-    fun bind(model: Manga, onClick: (String) -> Unit) {
+    fun bind(model: Manga, onClick: (String, String) -> Unit) {
         binding = ViewMangaItemBinding.bind(view)
 
         binding.apply {
@@ -31,7 +31,7 @@ class MangaViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
                 genresChip.addView(chip)
             }
             root.setOnClickListener {
-                onClick(model.id)
+                onClick(model.id, model.title)
             }
         }
 

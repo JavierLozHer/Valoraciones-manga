@@ -1,7 +1,6 @@
 package edu.iesam.valoracionesmanga.features.manga.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +28,8 @@ class MangaFragment : Fragment() {
 
     private lateinit var skeleton : Skeleton
 
-    fun onClick(id: String) {
-        findNavController().navigate(MangaFragmentDirections.actionMangaToMangaDetail(id))
+    fun onClick(id: String, title: String) {
+        findNavController().navigate(MangaFragmentDirections.actionMangaToMangaDetail(id, title))
     }
 
     override fun onCreateView(

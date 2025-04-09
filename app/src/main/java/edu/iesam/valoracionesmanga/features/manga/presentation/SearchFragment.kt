@@ -28,8 +28,8 @@ class SearchFragment : Fragment() {
 
     private lateinit var skeleton : Skeleton
 
-    fun onClick(id: String) {
-        findNavController().navigate(SearchFragmentDirections.actionMangaSearchToMangaDetail(id))
+    fun onClick(id: String, title: String) {
+        findNavController().navigate(SearchFragmentDirections.actionMangaSearchToMangaDetail(id, title))
     }
 
     override fun onCreateView(
