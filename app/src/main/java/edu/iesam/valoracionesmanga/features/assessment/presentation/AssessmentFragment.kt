@@ -10,9 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
+import edu.iesam.valoracionesmanga.core.domain.ErrorApp
 import edu.iesam.valoracionesmanga.core.presentation.assessmentAdapter.AssessmentAdapter
+import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
+import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.databinding.FragmentAssessmentBinding
 import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AssessmentFragment : Fragment() {
@@ -22,6 +26,7 @@ class AssessmentFragment : Fragment() {
     private val assessmentAdapter = AssessmentAdapter()
 
     private val viewModel: AssessmentViewModel by viewModel()
+    private val errorAppUIFactory: ErrorAppUIFactory by inject()
 
     private lateinit var skeleton : Skeleton
 
@@ -58,6 +63,7 @@ class AssessmentFragment : Fragment() {
         val observer = Observer<AssessmentViewModel.UiState> {uiState ->
             showLoading(uiState.isLoading)
             bindData(uiState.assessment)
+            showError(uiState.errorApp)
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
@@ -75,4 +81,14 @@ class AssessmentFragment : Fragment() {
             assessmentAdapter.submitList(assessment)
         }
     }
+
+    private fun showError(errorApp: ErrorApp?) {
+        errorApp?.let {
+            val errorAppUI = errorAppUIFactory.build(errorApp, viewModel::getAssessment)
+            binding.errorAppView.render(errorAppUI)
+        } ?: run {
+            binding.errorAppView.hide()
+        }
+    }
+
 }

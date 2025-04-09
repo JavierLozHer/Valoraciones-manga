@@ -23,4 +23,9 @@
     <string name="start_date">Fecha de inicio: </string>
     <string name="finish_date">Fecha de finalización: </string>
     <string name="function">Author function</string>
+    <string name="title_error_internet">Error en la conexión</string>
+    <string name="description_error_internet">"Se ha producido un error en la conexión. Por favor, verifica que tienes conexión a internet y vuelve ha intentarlo"</string>
+    <string name="title_error_unknown">Error desconocido</string>
+    <string name="description_error_unknown">Se ha producido un error desconocido en la aplicación. Por favor, vuelve a intentarlo.</string>
+    <string name="button_retry">Reintentar</string>
 </resources>

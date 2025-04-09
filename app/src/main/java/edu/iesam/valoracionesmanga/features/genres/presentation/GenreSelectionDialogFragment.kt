@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
+import edu.iesam.valoracionesmanga.core.domain.ErrorApp
+import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
+import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.databinding.DialogFragmentGenresSelectionBinding
 import edu.iesam.valoracionesmanga.features.genres.presentation.GenreSelectionViewModel.Genre
 import edu.iesam.valoracionesmanga.features.genres.presentation.adapter.GenreAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreSelectionDialogFragment : DialogFragment() {
@@ -22,6 +26,7 @@ class GenreSelectionDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val viewModel: GenreSelectionViewModel by viewModel()
+    private val errorAppUIFactory: ErrorAppUIFactory by inject()
 
     private val genreAdapter = GenreAdapter()
 
@@ -73,6 +78,7 @@ class GenreSelectionDialogFragment : DialogFragment() {
         viewModel.uiState.observe(this) { uiState ->
             showLoading(uiState.isLoading)
             bindData(uiState.genres)
+            showError(uiState.errorApp)
         }
     }
 
@@ -86,6 +92,15 @@ class GenreSelectionDialogFragment : DialogFragment() {
             skeleton.showSkeleton()
         } else {
             skeleton.showOriginal()
+        }
+    }
+
+    private fun showError(errorApp: ErrorApp?) {
+        errorApp?.let {
+            val errorAppUI = errorAppUIFactory.build(errorApp, viewModel::getGenres)
+            binding.errorAppView.render(errorAppUI)
+        } ?: run {
+            binding.errorAppView.hide()
         }
     }
 
