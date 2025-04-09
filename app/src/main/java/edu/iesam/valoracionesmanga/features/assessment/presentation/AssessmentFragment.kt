@@ -5,12 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
+import edu.iesam.valoracionesmanga.core.presentation.assessmentAdapter.AssessmentAdapter
 import edu.iesam.valoracionesmanga.databinding.FragmentAssessmentBinding
+import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AssessmentFragment : Fragment() {
     private var _binding: FragmentAssessmentBinding? = null
     private val binding get() = _binding!!
+
+    private val assessmentAdapter = AssessmentAdapter()
+
+    private val viewModel: AssessmentViewModel by viewModel()
+
+    private lateinit var skeleton : Skeleton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,6 +35,44 @@ class AssessmentFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.profileToolbar.toolbar.title = getString(R.string.assessment)
+        binding.assessmentToolbar.toolbar.title = getString(R.string.assessment)
+        setUpRecyclerView()
+        setupObserver()
+        viewModel.getAssessment()
+    }
+
+    private fun setUpRecyclerView() {
+        binding.apply {
+            assessmentRecyclerView.layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            assessmentRecyclerView.adapter = assessmentAdapter
+            skeleton = assessmentRecyclerView.applySkeleton(R.layout.view_assessment_item)
+        }
+
+    }
+
+    private fun setupObserver() {
+        val observer = Observer<AssessmentViewModel.UiState> {uiState ->
+            showLoading(uiState.isLoading)
+            bindData(uiState.assessment)
+        }
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            skeleton.showSkeleton()
+        } else {
+            skeleton.showOriginal()
+        }
+    }
+
+    private fun bindData(assessment: List<GetAssessmentMangaUseCase.AssessmentManga>?) {
+        assessment?.let {
+            assessmentAdapter.submitList(assessment)
+        }
     }
 }
