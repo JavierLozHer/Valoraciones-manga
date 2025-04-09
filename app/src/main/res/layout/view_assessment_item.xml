@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@id/manga_image"
             android:text="@string/user_name"
+            android:layout_marginStart="@dimen/margin"
             android:textStyle="bold"/>
 
         <TextView
@@ -45,11 +46,12 @@
 
         <TextView
             android:id="@+id/comment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/score"
-            app:layout_constraintLeft_toRightOf="@id/manga_image"
-            android:layout_marginTop="@dimen/assessment_user_margin"/>
+            app:layout_constraintLeft_toLeftOf="@id/user"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/margin"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
