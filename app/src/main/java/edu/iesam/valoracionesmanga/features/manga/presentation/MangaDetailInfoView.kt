@@ -10,6 +10,7 @@ import edu.iesam.valoracionesmanga.core.extensions.loadUrl
 import edu.iesam.valoracionesmanga.databinding.ViewMangaDetailInfoBinding
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 import edu.iesam.valoracionesmanga.features.manga.presentation.staffAdapter.StaffAdapter
+import java.util.Locale
 
 class MangaDetailInfoView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -19,7 +20,7 @@ class MangaDetailInfoView @JvmOverloads constructor(
 
     private val staffAdapter = StaffAdapter()
 
-    fun render(manga: Manga) {
+    fun render(manga: Manga, mangaScore: Double?) {
         binding.apply {
             title.text = manga.title
             image.loadUrl(manga.img)
@@ -30,6 +31,10 @@ class MangaDetailInfoView @JvmOverloads constructor(
                 chip.isCheckable = false
                 chip.isClickable = false
                 genresChip.addView(chip)
+            }
+
+            mangaScore?.let {
+                score.text = String.format(Locale.US, "%.2f", it)
             }
 
             startYear.text = manga.startDate

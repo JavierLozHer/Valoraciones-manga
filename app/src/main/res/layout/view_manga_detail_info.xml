@@ -59,6 +59,7 @@
         app:layout_constraintTop_toBottomOf="@id/synopsis"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="@dimen/margin"
+        android:layout_marginStart="@dimen/margin"
         android:text="@string/start_date"/>
 
     <TextView
@@ -66,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/start_year_label"
-        app:layout_constraintLeft_toRightOf="@id/start_year_label"/>
+        app:layout_constraintLeft_toRightOf="@id/start_year_label"
+        android:layout_marginStart="@dimen/margin"/>
 
     <TextView
         android:id="@+id/finish_year_label"
@@ -75,19 +77,22 @@
         app:layout_constraintTop_toBottomOf="@id/start_year_label"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="@dimen/margin"
-        android:text="@string/finish_date"/>
+        android:text="@string/finish_date"
+        android:layout_marginStart="@dimen/margin"/>
 
     <TextView
         android:id="@+id/finish_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/finish_year_label"
-        app:layout_constraintLeft_toRightOf="@id/finish_year_label"/>
+        app:layout_constraintLeft_toRightOf="@id/finish_year_label"
+        android:layout_marginStart="@dimen/margin"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/staff_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
         app:layout_constraintTop_toBottomOf="@id/finish_year_label"
         app:layout_constraintLeft_toLeftOf="parent"/>
 

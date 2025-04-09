@@ -13,7 +13,7 @@ class AssessmentMangaFragment@JvmOverloads constructor(
 
     private val binding = ViewAssessmentMangaBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun render(assessments: List<Assessment>) {
-        binding.title.text = "Lista"
+    fun render() {
+
     }
 }

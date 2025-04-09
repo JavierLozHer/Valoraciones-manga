@@ -52,20 +52,24 @@ class MangaDetailFragment: Fragment() {
 
     private fun setupObserver() {
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            showLoading(uiState.isLoading)
-            bindData(uiState.manga)
+            shoLoading(uiState.isLoading)
+            bindData(uiState.manga, uiState.score)
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-
+    private fun shoLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visible()
+        } else {
+            binding.progressBar.hide()
+        }
     }
 
-    private fun bindData(manga: Manga?) {
+    private fun bindData(manga: Manga?, score: Double?) {
         manga?.let {
             binding.profileToolbar.toolbar.title = manga.title
-            binding.mangaDetailInfoView.render(manga)
-            binding.mangaDetailAssessmentView.render(listOf())
+            binding.mangaDetailInfoView.render(manga, score)
+            binding.mangaDetailAssessmentView.render()
         }
     }
 
