@@ -12,9 +12,6 @@ class GetAssessmentMangaUseCase {
         }
     }
 
-    data class AssessmentManga(
-        val assessment: Assessment,
-        val manga: Manga?
-    )
+
 
 }

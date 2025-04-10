@@ -15,6 +15,7 @@ import edu.iesam.valoracionesmanga.core.presentation.assessmentAdapter.Assessmen
 import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
 import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.databinding.FragmentAssessmentBinding
+import edu.iesam.valoracionesmanga.features.assessment.domain.AssessmentManga
 import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -76,7 +77,7 @@ class AssessmentFragment : Fragment() {
         }
     }
 
-    private fun bindData(assessment: List<GetAssessmentMangaUseCase.AssessmentManga>?) {
+    private fun bindData(assessment: List<AssessmentManga>?) {
         assessment?.let {
             assessmentAdapter.submitList(assessment)
         }
