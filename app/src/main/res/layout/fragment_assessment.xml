@@ -16,4 +16,9 @@
         app:layout_constraintTop_toBottomOf="@id/assessment_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppView
+        android:id="@+id/error_app_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

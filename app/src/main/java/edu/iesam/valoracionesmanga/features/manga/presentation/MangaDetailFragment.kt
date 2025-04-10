@@ -10,10 +10,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
 import edu.iesam.valoracionesmanga.R
+import edu.iesam.valoracionesmanga.core.domain.ErrorApp
+import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
 import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.core.presentation.visible
 import edu.iesam.valoracionesmanga.databinding.FragmentMangaDetailBinding
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MangaDetailFragment: Fragment() {
@@ -24,6 +27,7 @@ class MangaDetailFragment: Fragment() {
     private val mangaArgs: MangaDetailFragmentArgs by navArgs()
 
     private val viewModel : MangaDetailViewModel by viewModel()
+    private val errorAppUIFactory: ErrorAppUIFactory by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,15 +50,19 @@ class MangaDetailFragment: Fragment() {
         }
         setupObserver()
         setupTab()
+        getManga()
+
+    }
+
+    private fun getManga() {
         viewModel.getManga(mangaArgs.mangaId)
-
-
     }
 
     private fun setupObserver() {
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
             shoLoading(uiState.isLoading)
             bindData(uiState.manga, uiState.score)
+            showError(uiState.errorApp)
         }
     }
 
@@ -71,6 +79,16 @@ class MangaDetailFragment: Fragment() {
             binding.profileToolbar.toolbar.title = manga.title
             binding.mangaDetailInfoView.render(manga, score)
             binding.mangaDetailAssessmentView.render()
+        }
+    }
+
+
+    private fun showError(errorApp: ErrorApp?) {
+        errorApp?.let {
+            val errorAppUI = errorAppUIFactory.build(errorApp, ::getManga)
+            binding.errorAppView.render(errorAppUI)
+        } ?: run {
+            binding.errorAppView.hide()
         }
     }
 

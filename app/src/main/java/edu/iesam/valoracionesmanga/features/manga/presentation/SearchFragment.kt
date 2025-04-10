@@ -12,9 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.valoracionesmanga.R
+import edu.iesam.valoracionesmanga.core.domain.ErrorApp
+import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
+import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.databinding.FragmentSearchBinding
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 import edu.iesam.valoracionesmanga.features.manga.presentation.adapter.MangaAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,6 +29,7 @@ class SearchFragment : Fragment() {
     private val mangaAdapter = MangaAdapter(::onClick)
 
     private val viewModel: SearchViewModel by viewModel()
+    private val errorAppUIFactory: ErrorAppUIFactory by inject()
 
     private lateinit var skeleton : Skeleton
 
@@ -86,6 +91,7 @@ class SearchFragment : Fragment() {
         val observer = Observer<SearchViewModel.UiState>{ uiState ->
             showLoading(uiState.isLoading)
             bindData(uiState.mangas)
+            showError(uiState.errorApp)
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
@@ -101,6 +107,15 @@ class SearchFragment : Fragment() {
             skeleton.showSkeleton()
         } else {
             skeleton.showOriginal()
+        }
+    }
+
+    private fun showError(errorApp: ErrorApp?) {
+        errorApp?.let {
+            val errorAppUI = errorAppUIFactory.build(errorApp)
+            binding.errorAppView.render(errorAppUI)
+        } ?: run {
+            binding.errorAppView.hide()
         }
     }
 }

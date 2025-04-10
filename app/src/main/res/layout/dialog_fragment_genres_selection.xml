@@ -40,4 +40,9 @@
             android:layout_marginStart="@dimen/margin"/>
     </LinearLayout>
 
+    <edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppView
+        android:id="@+id/error_app_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
