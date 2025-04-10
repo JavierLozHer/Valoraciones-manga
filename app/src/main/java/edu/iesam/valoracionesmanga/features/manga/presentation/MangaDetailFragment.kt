@@ -15,6 +15,7 @@ import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
 import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.core.presentation.visible
 import edu.iesam.valoracionesmanga.databinding.FragmentMangaDetailBinding
+import edu.iesam.valoracionesmanga.features.assessment.domain.AssessmentManga
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -60,13 +61,15 @@ class MangaDetailFragment: Fragment() {
 
     private fun setupObserver() {
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            shoLoading(uiState.isLoading)
+            showLoading(uiState.isLoading)
             bindData(uiState.manga, uiState.score)
+            bindDataAssessment(uiState.assessment)
             showError(uiState.errorApp)
         }
     }
 
-    private fun shoLoading(isLoading: Boolean) {
+
+    private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.progressBar.visible()
         } else {
@@ -78,7 +81,12 @@ class MangaDetailFragment: Fragment() {
         manga?.let {
             binding.profileToolbar.toolbar.title = manga.title
             binding.mangaDetailInfoView.render(manga, score)
-            binding.mangaDetailAssessmentView.render()
+        }
+    }
+
+    private fun bindDataAssessment(assessments: List<AssessmentManga>?) {
+        assessments?.let {
+            binding.mangaDetailAssessmentView.render(assessments)
         }
     }
 

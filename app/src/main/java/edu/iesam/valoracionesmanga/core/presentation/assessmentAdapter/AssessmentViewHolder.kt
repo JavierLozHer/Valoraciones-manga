@@ -1,19 +1,17 @@
 package edu.iesam.valoracionesmanga.core.presentation.assessmentAdapter
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import edu.iesam.valoracionesmanga.core.extensions.loadUrl
 import edu.iesam.valoracionesmanga.databinding.ViewAssessmentItemBinding
-import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
+import edu.iesam.valoracionesmanga.features.assessment.domain.AssessmentManga
 
 class AssessmentViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
 
     private lateinit var binding: ViewAssessmentItemBinding
 
-    fun bind(model: GetAssessmentMangaUseCase.AssessmentManga) {
+    fun bind(model: AssessmentManga) {
         binding = ViewAssessmentItemBinding.bind(view)
-Log.d("@dev", model.assessment.comment.length.toString())
         binding.apply {
             user.text = model.assessment.user
             score.text =  model.assessment.score.toString()

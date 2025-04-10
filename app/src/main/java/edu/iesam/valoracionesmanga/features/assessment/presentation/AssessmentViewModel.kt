@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.iesam.valoracionesmanga.core.domain.ErrorApp
 import edu.iesam.valoracionesmanga.features.assessment.domain.Assessment
+import edu.iesam.valoracionesmanga.features.assessment.domain.AssessmentManga
 import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
 import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentsUseCase
 import edu.iesam.valoracionesmanga.features.manga.domain.GetMangasUseCase
@@ -53,7 +54,7 @@ class AssessmentViewModel(
 
     data class UiState(
         val isLoading: Boolean = false,
-        val assessment : List<GetAssessmentMangaUseCase.AssessmentManga>? = null,
+        val assessment : List<AssessmentManga>? = null,
         val errorApp: ErrorApp? = null
     )
 }
