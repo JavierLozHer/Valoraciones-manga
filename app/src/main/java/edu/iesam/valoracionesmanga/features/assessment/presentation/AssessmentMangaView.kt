@@ -2,7 +2,6 @@ package edu.iesam.valoracionesmanga.features.assessment.presentation
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +18,7 @@ class AssessmentMangaView@JvmOverloads constructor(
     private val assessmentAdapter = AssessmentAdapter()
 
     fun render(assessments: List<AssessmentManga>) {
-        Log.d("@dev", assessments.toString())
+
         binding.apply {
             assessmentRecyclerView.layoutManager = LinearLayoutManager(
                 context,

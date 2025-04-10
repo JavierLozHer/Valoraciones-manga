@@ -15,7 +15,6 @@ import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
 import edu.iesam.valoracionesmanga.core.presentation.hide
 import edu.iesam.valoracionesmanga.core.presentation.visible
 import edu.iesam.valoracionesmanga.databinding.FragmentMangaDetailBinding
-import edu.iesam.valoracionesmanga.features.assessment.domain.Assessment
 import edu.iesam.valoracionesmanga.features.assessment.domain.AssessmentManga
 import edu.iesam.valoracionesmanga.features.manga.domain.Manga
 import org.koin.android.ext.android.inject
