@@ -9,7 +9,13 @@
         android:id="@+id/fragment_assessment"
         android:name="edu.iesam.valoracionesmanga.features.assessment.presentation.AssessmentFragment"
         android:label="@string/assessment"
-        tools:layout="@layout/fragment_assessment" />
+        tools:layout="@layout/fragment_assessment" >
+
+        <action
+            android:id="@+id/action_assessment_to_assessment_user"
+            app:destination="@+id/fragment_assessment_user"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_manga"
@@ -81,4 +87,14 @@
         android:id="@+id/dialog_fragment_select_genre"
         android:name="edu.iesam.valoracionesmanga.features.genres.presentation.GenreSelectionDialogFragment" />
 
+    <fragment
+        android:id="@+id/fragment_assessment_user"
+        android:name="edu.iesam.valoracionesmanga.features.assessment.presentation.AssessmentUserFragment">
+
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="false"/>
+
+    </fragment>
 </navigation>

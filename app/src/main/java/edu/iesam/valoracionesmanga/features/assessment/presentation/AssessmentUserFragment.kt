@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
@@ -16,43 +17,55 @@ import edu.iesam.valoracionesmanga.core.domain.ErrorApp
 import edu.iesam.valoracionesmanga.core.presentation.assessmentAdapter.AssessmentAdapter
 import edu.iesam.valoracionesmanga.core.presentation.errorView.ErrorAppUIFactory
 import edu.iesam.valoracionesmanga.core.presentation.hide
-import edu.iesam.valoracionesmanga.databinding.FragmentAssessmentBinding
+import edu.iesam.valoracionesmanga.databinding.FragmentAssessmentUserBinding
 import edu.iesam.valoracionesmanga.features.assessment.domain.AssessmentManga
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AssessmentFragment : Fragment() {
-    private var _binding: FragmentAssessmentBinding? = null
+class AssessmentUserFragment: Fragment() {
+    private var _binding: FragmentAssessmentUserBinding? = null
     private val binding get() = _binding!!
 
-    private val assessmentAdapter = AssessmentAdapter(::onClick)
+    private val assessmentArgs: AssessmentUserFragmentArgs by navArgs()
 
-    private val viewModel: AssessmentViewModel by viewModel()
+    private val assessmentAdapter = AssessmentAdapter(null)
+
+    private val viewModel: AssessmentUserViewModel by viewModel()
     private val errorAppUIFactory: ErrorAppUIFactory by inject()
 
     private lateinit var skeleton : Skeleton
-
-    private fun onClick(email: String) {
-        findNavController().navigate(AssessmentFragmentDirections.actionAssessmentToAssessmentUser(email))
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAssessmentBinding.inflate(inflater, container, false)
+        _binding = FragmentAssessmentUserBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.assessmentToolbar.toolbar.title = getString(R.string.assessment)
-        setUpRecyclerView()
+        setupToolBar()
+        setupRecyclerView()
         setupObserver()
-        viewModel.getAssessment()
+        getAssessmentUser()
     }
 
-    private fun setUpRecyclerView() {
+    private fun setupToolBar() {
+        val toolbar = binding.assessmentToolbar.toolbar
+        toolbar.title = assessmentArgs.email
+
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+
+        toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+
+
+    private fun setupRecyclerView() {
         binding.apply {
             assessmentRecyclerView.layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -66,7 +79,7 @@ class AssessmentFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        val observer = Observer<AssessmentViewModel.UiState> {uiState ->
+        val observer = Observer<AssessmentUserViewModel.UiState> {uiState ->
             showLoading(uiState.isLoading)
             bindData(uiState.assessment)
             showError(uiState.errorApp)
@@ -90,11 +103,14 @@ class AssessmentFragment : Fragment() {
 
     private fun showError(errorApp: ErrorApp?) {
         errorApp?.let {
-            val errorAppUI = errorAppUIFactory.build(errorApp, viewModel::getAssessment)
+            val errorAppUI = errorAppUIFactory.build(errorApp, ::getAssessmentUser)
             binding.errorAppView.render(errorAppUI)
         } ?: run {
             binding.errorAppView.hide()
         }
     }
 
+    private fun getAssessmentUser() {
+        viewModel.getAssessment(assessmentArgs.email)
+    }
 }
