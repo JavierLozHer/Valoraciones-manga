@@ -10,6 +10,7 @@ import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentByUse
 import edu.iesam.valoracionesmanga.features.assessment.domain.GetAssessmentMangaUseCase
 import edu.iesam.valoracionesmanga.features.manga.domain.GetMangasUseCase
 import edu.iesam.valoracionesmanga.features.profile.domain.GetUserLoggedUseCase
+import edu.iesam.valoracionesmanga.features.profile.domain.LogoutUseCase
 import edu.iesam.valoracionesmanga.features.profile.domain.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +21,8 @@ class ProfileViewModel(
     private val getUserLoggedUseCase: GetUserLoggedUseCase,
     private val getAssessmentByUserEmailUseCase: GetAssessmentByUserEmailUseCase,
     private val getMangasUseCase: GetMangasUseCase,
-    private val getAssessmentMangaUseCase: GetAssessmentMangaUseCase
+    private val getAssessmentMangaUseCase: GetAssessmentMangaUseCase,
+    private val logoutUseCase: LogoutUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(UiState())
@@ -57,6 +59,13 @@ class ProfileViewModel(
                     errorApp = result.exceptionOrNull() as? ErrorApp
                 ))
             }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch(Dispatchers.IO) {
+            logoutUseCase.invoke()
+            _uiState.postValue(UiState())
         }
     }
 
