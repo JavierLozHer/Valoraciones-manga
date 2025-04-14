@@ -14,7 +14,6 @@ import edu.iesam.valoracionesmanga.core.presentation.showSnackbar
 import edu.iesam.valoracionesmanga.core.presentation.validateEmail
 import edu.iesam.valoracionesmanga.core.presentation.validatePassword
 import edu.iesam.valoracionesmanga.databinding.FragmentUserFormBinding
-import edu.iesam.valoracionesmanga.features.user.domain.LoginUseCase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserFormFragment: Fragment() {
