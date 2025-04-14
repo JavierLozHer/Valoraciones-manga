@@ -44,6 +44,12 @@ class ProfileFragment : Fragment() {
         binding.profileToolbar.toolbar.title = getString(R.string.profile)
         setupRecyclerView()
         setUpObserver()
+
+        binding.buttonLogout.setOnClickListener{
+            viewModel.logout()
+            assessmentAdapter.submitList(listOf())
+        }
+
         viewModel.getUserLogged()
     }
 
@@ -77,23 +83,36 @@ class ProfileFragment : Fragment() {
     }
 
     private fun bindData(assessments: List<AssessmentManga>?, user: User?) {
-        assessments?.let {
-            assessmentAdapter.submitList(assessments)
-            binding.buttonsLogin.visibility = View.GONE
-        } ?: run {
-            binding.apply {
+        binding.apply {
+            assessments?.let {
+                assessmentAdapter.submitList(assessments)
+                buttonsLogin.visibility = View.GONE
+                buttonLogout.visibility = View.VISIBLE
+            } ?: run {
+
                 user?.let {
                     viewModel.getAssessment(user.email)
-                    binding.buttonsLogin.visibility = View.GONE
-                }?: run {
+                    buttonsLogin.visibility = View.GONE
+
+                } ?: run {
                     buttonsLogin.visibility = View.VISIBLE
+                    buttonLogout.visibility = View.GONE
                     buttonLogin.setOnClickListener {
-                        findNavController().navigate(ProfileFragmentDirections.actionProfileToUserForm(true))
+                        findNavController().navigate(
+                            ProfileFragmentDirections.actionProfileToUserForm(
+                                true
+                            )
+                        )
                     }
                     buttonCreateUser.setOnClickListener {
-                        findNavController().navigate(ProfileFragmentDirections.actionProfileToUserForm(false))
+                        findNavController().navigate(
+                            ProfileFragmentDirections.actionProfileToUserForm(
+                                false
+                            )
+                        )
                     }
                 }
+
             }
         }
     }

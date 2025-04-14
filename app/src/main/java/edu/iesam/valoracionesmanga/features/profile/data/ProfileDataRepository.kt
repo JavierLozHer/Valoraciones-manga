@@ -12,4 +12,8 @@ class ProfileDataRepository(private val firebaseAuth: FirebaseAuth): ProfileRepo
         return firebaseAuth.currentUser?.toModel()
     }
 
+    override suspend fun logout() {
+        firebaseAuth.signOut()
+    }
+
 }
