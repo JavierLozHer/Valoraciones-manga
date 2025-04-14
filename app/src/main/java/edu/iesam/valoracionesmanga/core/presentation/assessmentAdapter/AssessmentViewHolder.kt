@@ -10,7 +10,7 @@ class AssessmentViewHolder(private val view: View): RecyclerView.ViewHolder(view
 
     private lateinit var binding: ViewAssessmentItemBinding
 
-    fun bind(model: AssessmentManga) {
+    fun bind(model: AssessmentManga, onClick: ((String) -> Unit)?) {
         binding = ViewAssessmentItemBinding.bind(view)
         binding.apply {
             user.text = model.assessment.user
@@ -19,6 +19,12 @@ class AssessmentViewHolder(private val view: View): RecyclerView.ViewHolder(view
 
             model.manga?.let { manga ->
                 mangaImage.loadUrl(manga.img)
+            }
+
+            if (onClick != null) {
+                user.setOnClickListener {
+                    onClick(model.assessment.user)
+                }
             }
 
         }

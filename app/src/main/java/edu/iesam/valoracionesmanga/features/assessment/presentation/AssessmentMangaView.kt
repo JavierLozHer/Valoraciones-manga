@@ -15,7 +15,7 @@ class AssessmentMangaView@JvmOverloads constructor(
 
     private val binding = ViewAssessmentMangaBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private val assessmentAdapter = AssessmentAdapter()
+    private val assessmentAdapter = AssessmentAdapter(null)
 
     fun render(assessments: List<AssessmentManga>) {
 
