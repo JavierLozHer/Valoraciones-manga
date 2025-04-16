@@ -69,7 +69,7 @@ class ProfileFragment : Fragment() {
     private fun setUpObserver() {
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
             showLoading(uiState.isLoading)
-            bindData(uiState.assessment, uiState.user)
+            bindData(uiState.assessment, uiState.user, uiState.isLoading)
             showError(uiState.errorApp)
         }
     }
@@ -82,7 +82,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun bindData(assessments: List<AssessmentManga>?, user: User?) {
+    private fun bindData(assessments: List<AssessmentManga>?, user: User?, isLoading: Boolean) {
         binding.apply {
             assessments?.let {
                 assessmentAdapter.submitList(assessments)
@@ -95,22 +95,25 @@ class ProfileFragment : Fragment() {
                     buttonsLogin.visibility = View.GONE
 
                 } ?: run {
-                    buttonsLogin.visibility = View.VISIBLE
-                    buttonLogout.visibility = View.GONE
-                    buttonLogin.setOnClickListener {
-                        findNavController().navigate(
-                            ProfileFragmentDirections.actionProfileToUserForm(
-                                true
+                    if (!isLoading) {
+                        buttonsLogin.visibility = View.VISIBLE
+                        buttonLogout.visibility = View.GONE
+                        buttonLogin.setOnClickListener {
+                            findNavController().navigate(
+                                ProfileFragmentDirections.actionProfileToUserForm(
+                                    true
+                                )
                             )
-                        )
-                    }
-                    buttonCreateUser.setOnClickListener {
-                        findNavController().navigate(
-                            ProfileFragmentDirections.actionProfileToUserForm(
-                                false
+                        }
+                        buttonCreateUser.setOnClickListener {
+                            findNavController().navigate(
+                                ProfileFragmentDirections.actionProfileToUserForm(
+                                    false
+                                )
                             )
-                        )
+                        }
                     }
+
                 }
 
             }

@@ -25,6 +25,7 @@ class MangaDetailInfoView @JvmOverloads constructor(
             title.text = manga.title
             image.loadUrl(manga.img)
             synopsis.text = manga.synopsis
+            genresChip.removeAllViews()
             manga.genres.forEach { gender ->
                 val chip = Chip(context)
                 chip.text = gender

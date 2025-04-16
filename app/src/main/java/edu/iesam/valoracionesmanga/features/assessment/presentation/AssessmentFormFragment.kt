@@ -103,9 +103,11 @@ class AssessmentFormFragment: Fragment() {
 
     private fun showError(errorApp: ErrorApp?) {
         errorApp?.let {
-            val errorAppUI = errorAppUIFactory.build(errorApp, ::getAssessment)
+            val errorAppUI = errorAppUIFactory.build(errorApp)
             binding.errorAppView.render(errorAppUI)
+            binding.assessmentForm.hide()
         } ?: run {
+            binding.assessmentForm.visible()
             binding.errorAppView.hide()
         }
     }

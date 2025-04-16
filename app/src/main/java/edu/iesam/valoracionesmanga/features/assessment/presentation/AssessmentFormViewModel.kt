@@ -24,7 +24,7 @@ class AssessmentFormViewModel(
     val uiState: LiveData<UiState> = _uiState
 
     fun getAssessment(mangaId: String) {
-        UiState(isLoading = true)
+        _uiState.postValue(UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             getUserLoggedUseCase.invoke()?.let { user ->
                 val result = getMangaAssessmentByEmailUseCase.invoke(user.email, mangaId)
@@ -35,14 +35,17 @@ class AssessmentFormViewModel(
                     )
                 )
             } ?: run {
-                UiState(
-                    errorApp = ErrorApp.UserNotLoggedErrorApp
+                _uiState.postValue(
+                    UiState(
+                        errorApp = ErrorApp.UserNotLoggedErrorApp
+                    )
                 )
             }
         }
     }
 
     fun save(score: Int, comment: String, mangaId: String) {
+        _uiState.postValue(UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             val user = getUserLoggedUseCase.invoke()
 
