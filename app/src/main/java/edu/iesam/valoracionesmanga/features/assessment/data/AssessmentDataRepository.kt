@@ -24,4 +24,24 @@ class AssessmentDataRepository(
         }
     }
 
+    override suspend fun save(assessment: Assessment): Result<Unit> {
+        return remoteDataSource.save(assessment).onSuccess {
+            localDataSource.save(assessment)
+        }
+    }
+
+    override suspend fun create(assessment: Assessment): Result<Unit> {
+        return remoteDataSource.create(assessment).fold(
+            onSuccess = {
+                localDataSource.save(it)
+                Result.success(Unit)
+            },
+
+            onFailure = {
+                Result.failure(it)
+            }
+        )
+
+    }
+
 }

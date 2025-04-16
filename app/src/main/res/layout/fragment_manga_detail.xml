@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/profile_toolbar"
+        android:id="@+id/manga_toolbar"
         layout="@layout/view_main_toolbar"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -13,7 +13,7 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/profile_toolbar">
+        app:layout_constraintTop_toBottomOf="@id/manga_toolbar">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -27,6 +27,17 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <Button
+        android:id="@+id/button_assess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/assess"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:visibility="gone"/>
+
     <edu.iesam.valoracionesmanga.features.manga.presentation.MangaDetailInfoView
         android:id="@+id/manga_detail_info_view"
         android:layout_width="match_parent"
@@ -37,7 +48,7 @@
         android:id="@+id/manga_detail_assessment_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout"
+        app:layout_constraintTop_toBottomOf="@id/button_assess"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ProgressBar

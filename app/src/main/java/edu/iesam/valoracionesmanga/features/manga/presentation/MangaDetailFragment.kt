@@ -40,7 +40,7 @@ class MangaDetailFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val toolbar = binding.profileToolbar.toolbar
+        val toolbar = binding.mangaToolbar.toolbar
         toolbar.title = mangaArgs.mangaTitle
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
@@ -79,8 +79,11 @@ class MangaDetailFragment: Fragment() {
 
     private fun bindData(manga: Manga?, score: Double?) {
         manga?.let {
-            binding.profileToolbar.toolbar.title = manga.title
+            binding.mangaToolbar.toolbar.title = manga.title
             binding.mangaDetailInfoView.render(manga, score)
+            binding.buttonAssess.setOnClickListener {
+                findNavController().navigate(MangaDetailFragmentDirections.actionMangaDetailToAssessmentForm(manga.id, manga.img))
+            }
         }
     }
 
@@ -107,10 +110,12 @@ class MangaDetailFragment: Fragment() {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when (tab?.position) {
                         0 -> {
+                            buttonAssess.hide()
                             mangaDetailInfoView.visible()
                             mangaDetailAssessmentView.hide()
                         }
                         1 -> {
+                            buttonAssess.visible()
                             mangaDetailInfoView.hide()
                             mangaDetailAssessmentView.visible()
                         }

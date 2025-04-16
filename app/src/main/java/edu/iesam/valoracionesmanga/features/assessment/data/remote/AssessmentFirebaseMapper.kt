@@ -11,3 +11,12 @@ fun AssessmentFirebaseModel.toModel(id: String): Assessment {
         user = this.user
     )
 }
+
+fun Assessment.toFirebaseModel(): AssessmentFirebaseModel {
+    return AssessmentFirebaseModel(
+        comment = this.comment,
+        mangaId = this.mangaId,
+        score = this.score.toInt(),
+        user = this.user
+    )
+}

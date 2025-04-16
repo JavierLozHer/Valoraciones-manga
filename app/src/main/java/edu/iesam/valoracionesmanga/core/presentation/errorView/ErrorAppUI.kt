@@ -39,3 +39,18 @@ class UnknownErrorUI(private val context: Context, private val actionRetry: KFun
         return actionRetry
     }
 }
+
+class UserNotLoggedErrorUI(private val context: Context, private val actionRetry: KFunction0<Unit>?) : ErrorAppUI {
+
+    override fun getTitleError(): String {
+        return context.getString(R.string.user_not_logged)
+    }
+
+    override fun getDescriptionError(): String {
+        return context.getString(R.string.description_user_not_logged)
+    }
+
+    override fun getActionRetry(): KFunction0<Unit>? {
+        return actionRetry
+    }
+}

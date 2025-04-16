@@ -29,4 +29,10 @@
     <string name="description_error_unknown">Se ha producido un error desconocido en la aplicación. Por favor, vuelve a intentarlo.</string>
     <string name="button_retry">Reintentar</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="comment">Comentario</string>
+    <string name="assess">Valorar</string>
+    <string name="score_label">Valoración</string>
+    <string name="user_not_logged">Usuario no registrado</string>
+    <string name="description_user_not_logged">Usuario no registrado. Por favor inicie sesión y vuelve a intentarlo</string>
+    <string name="assessment_add">Valoracion agregada correctamente</string>
 </resources>

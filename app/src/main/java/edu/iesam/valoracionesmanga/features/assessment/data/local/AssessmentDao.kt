@@ -14,4 +14,6 @@ interface AssessmentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAll(vararg assessmentEntity: AssessmentEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun save(assessmentEntity: AssessmentEntity)
 }
