@@ -81,6 +81,10 @@
             app:argType="string"
             app:nullable="false"/>
 
+        <action
+            android:id="@+id/action_manga_detail_to_assessment_form"
+            app:destination="@id/fragment_assessment_form"/>
+
     </fragment>
 
     <fragment
@@ -93,6 +97,22 @@
 
         <argument
             android:name="email"
+            app:argType="string"
+            app:nullable="false"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_assessment_form"
+        android:name="edu.iesam.valoracionesmanga.features.assessment.presentation.AssessmentFormFragment">
+
+        <argument
+            android:name="mangaId"
+            app:argType="string"
+            app:nullable="false"/>
+
+        <argument
+            android:name="mangaImage"
             app:argType="string"
             app:nullable="false"/>
 

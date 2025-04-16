@@ -13,6 +13,7 @@ class ErrorAppUIFactory(private val context: Context) {
             ErrorApp.DataErrorApp -> UnknownErrorUI(context, actionRetry)
             ErrorApp.InternetErrorApp -> InternetErrorUI(context, actionRetry)
             ErrorApp.UnknownErrorApp -> UnknownErrorUI(context, actionRetry)
+            ErrorApp.UserNotLoggedErrorApp -> UserNotLoggedErrorUI(context, actionRetry)
         }
     }
 

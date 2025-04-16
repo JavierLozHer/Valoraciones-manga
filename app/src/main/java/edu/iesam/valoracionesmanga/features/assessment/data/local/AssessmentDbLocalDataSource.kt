@@ -27,4 +27,8 @@ class AssessmentDbLocalDataSource(private val assessmentDao: AssessmentDao) {
             Result.failure(ErrorApp.DataErrorApp)
         }
     }
+
+    suspend fun save(assessment: Assessment) {
+        assessmentDao.save(assessment.toEntity())
+    }
 }

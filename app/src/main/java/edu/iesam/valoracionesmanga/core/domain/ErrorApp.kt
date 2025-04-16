@@ -13,4 +13,8 @@ sealed class ErrorApp : Throwable() {
         private fun readResolve(): Any = UnknownErrorApp
     }
 
+    object UserNotLoggedErrorApp : ErrorApp() {
+        private fun readResolve(): Any = UserNotLoggedErrorApp
+    }
+
 }
